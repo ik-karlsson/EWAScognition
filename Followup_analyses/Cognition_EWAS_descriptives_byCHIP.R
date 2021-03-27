@@ -33,8 +33,9 @@ mdata <- read.table("P:/Dementia_IK/Cognition/EWAS/Data/Original_data/Extract_Cp
 # Merge pheno data and meth data
 pmdata <- merge(pdata, mdata, by="TWINNR")
 
-# Merge with cog data
-adata <- merge(pmdata, cog, by="TWINNR")
+# Cog data, twins with meth data
+pmdata_tnr <- pmdata[1]
+cog_adata <- merge(pmdata_tnr, cog, by="TWINNR")
 
 # Count number of samples
 cog_adata <- ddply(cog_adata,.(TWINNR),transform, N_COG = NROW(piece))
